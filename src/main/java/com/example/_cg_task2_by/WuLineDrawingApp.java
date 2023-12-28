@@ -71,18 +71,21 @@ public class WuLineDrawingApp extends Application {
                 pw.setColor(xint, yint + 1, colorSecondary);
             }
 
-
             intery = intery + gradient;
+            System.out.println(intery);
         }
     }
 
     private Color interpolateColor(Color startColor, Color endColor, double ratio, double brightness) {
-        Color interpolatedColor = startColor.interpolate(endColor, ratio);
-        return Color.color(
-                interpolatedColor.getRed(),
-                interpolatedColor.getGreen(),
-                interpolatedColor.getBlue(),
-                brightness * interpolatedColor.getOpacity());
+        if (ratio < 0.0) ratio = 0.0;
+        if (ratio > 1.0) ratio = 1.0;
+
+        double red = startColor.getRed() + ratio * (endColor.getRed() - startColor.getRed());
+        double green = startColor.getGreen() + ratio * (endColor.getGreen() - startColor.getGreen());
+        double blue = startColor.getBlue() + ratio * (endColor.getBlue() - startColor.getBlue());
+
+        // Учитывая яркость, адаптируем альфа-канал
+        return new Color(red, green, blue, brightness);
     }
 
     private double fpart(double x) {
