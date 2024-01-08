@@ -12,7 +12,7 @@ import javafx.stage.Stage;
 public class WuLineDrawingApp extends Application {
 
 
-    // Отрисовываем окно
+    // Открываем окно
     @Override
     public void start(Stage primaryStage) {
         Canvas canvas = new Canvas(500, 500); // Canvas - это "полотно", которое располагается в открывшемся окне. На этом полотне, как раз, и рисует алгоритм
